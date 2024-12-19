@@ -1,0 +1,155 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Configuração de fundo e cores gerais */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container Principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+}
+
+/* Título com logo */
+.logo-and-wordmark {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+}
+
+.wordmark {
+  font-size: 2em;
+  color: #465EFF;
+  font-weight: bolder;
+}
+
+/* Conteúdo Principal */
+.main-content {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 700px;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Formulário */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Campo URL de destino */
+.url-container {
+  width: 100%;
+}
+
+.url-input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #bbbcbc;
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+/* Container do campo URL + seletor ajustados responsivamente */
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap; /* Responsividade para telas menores */
+}
+
+.url-input {
+  flex: 2 1 60%;
+}
+
+.tipo-campanha {
+  flex: 1 1 35%;
+  padding: 10px;
+  border: 2px solid #bbbcbc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Outros campos UTM ajustados */
+.campanha-container {
+  display: flex;
+  gap: 8px;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+}
+
+.campanha-container input {
+  flex: 1 1 calc(33.333% - 10px);
+  padding: 10px;
+  border: 1px solid #bbbcbc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.campanha-container input:focus {
+  border-color: #465EFF;
+}
+
+/* Botão */
+.form-container button {
+  background-color: #465EFF;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .input-container {
+    flex-direction: column; /* Ajuste para telas menores */
+  }
+
+  .campanha-container {
+    flex: 1 1 100%;
+  }
+
+  .campanha-container input {
+    flex: 1 1 100%;
+  }
+
+  .tipo-campanha {
+    flex: 1 1 100%;
+  }
+}
