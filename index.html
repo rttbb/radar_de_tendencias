@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de URLs de Campanha</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Título Central com logo e palavra-chave -->
+    <div class="logo-and-wordmark">
+      <img src="./assets/logo.png" alt="Logo" class="logo">
+      <div class="wordmark">Gerador de Campanhas</div>
+    </div>
+
+    <!-- Formulário Centralizado -->
+    <main class="main-content">
+      <form id="urlForm" class="form-container">
+        
+        <!-- Campo URL de destino em sua própria linha -->
+        <div class="url-container">
+          <input
+            type="url"
+            name="url_destino"
+            class="url-input"
+            placeholder="Digite a URL de destino aqui..."
+            required
+          />
+        </div>
+
+        <!-- Container para o seletor + campos da campanha alinhados horizontalmente -->
+        <div class="input-container">
+          <select name="tipo_campanha" class="tipo-campanha">
+            <option value="paga">Campanha Paga</option>
+            <option value="organica">Campanha Orgânica</option>
+          </select>
+          <div class="campanha-container">
+            <input type="text" name="source" placeholder="Origem do Tráfego" required />
+            <input type="text" name="medium" placeholder="Tipo de Campanha" required />
+            <input type="text" name="campaign" placeholder="Nome da Campanha" required />
+          </div>
+        </div>        
+
+        <button type="submit">Gerar URL</button>
+      </form>
+    </main>
+    
+    <div class="response-container" id="responseContainer" style="display:none;"></div>
+  </div>
+  <script src="./js/script.js"></script>
+</body>
+</html>
