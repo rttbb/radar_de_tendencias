@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte da internet está desaparecendo - e IA é parte do problema</title>
+    <meta property="og:title" content="Parte da internet está desaparecendo - e IA é parte do problema">
+    <meta property="og:description" content="Diante da necessidade de mais armazenamento, páginas antigas da internet estão desaparecendo para dar lugar a novas.">
+    <meta property="og:image" content="https://img.odcdn.com.br/wp-content/uploads/2024/12/shutterstock_2220723131-scaled.jpg">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <style>
+        body { display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f4f4f4; font-family: Arial, sans-serif; }
+        .loader { border: 8px solid #f3f3f3; border-top: 8px solid #3498db; border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    <script type="text/javascript">
+        function redirectToPage() {
+            var urlDestino = new URLSearchParams(window.location.search).get('url');
+            if (urlDestino) {
+                gtag('event', 'redirecionamento', {'event_category': 'Redirecionamento', 'event_label': urlDestino});
+                window.location.href = urlDestino;
+            } else {
+                alert('URL de destino não fornecida.');
+            }
+        }
+        setTimeout(redirectToPage, 1000);
+    </script>
+</head>
+<body>
+    <div class="loader"></div>
+</body>
+</html>
