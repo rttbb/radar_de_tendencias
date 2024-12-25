@@ -1,34 +1,67 @@
-document.getElementById("urlForm").addEventListener("submit", async (event) => {
-  event.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("urlForm");
+  const responseContainer = document.getElementById("responseContainer");
+  const loader = document.createElement('div');
+  loader.classList.add('loader'); // Para mostrar a animação de carregamento
+  responseContainer.appendChild(loader);
+  responseContainer.style.display = "none"; // Inicialmente escondido
 
-  // Captura dos dados do formulário
-  const formData = {
-    url_destino: document.querySelector('input[name="url_destino"]').value,
-    tipo_campanha: document.querySelector('select[name="tipo_campanha"]').value,
-    utm_source: document.querySelector('input[name="source"]').value,
-    utm_medium: document.querySelector('input[name="medium"]').value,
-    utm_campaign: document.querySelector('input[name="campaign"]').value,
-  };
+  const ga4Select = document.getElementById("ga4Select");
+  const customGa4Input = document.getElementById("customGa4Input");
 
-  try {
-    const response = await fetch("http://localhost:8000/generate_url", { // Verifique o nome correto da rota aqui!
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!response.ok) {
-      throw new Error("Erro ao enviar dados para a API");
+  // Exibe ou esconde o campo de ID customizado dependendo da seleção
+  ga4Select.addEventListener("change", function() {
+    if (ga4Select.value === "Outro") {
+      customGa4Input.style.display = "block";
+    } else {
+      customGa4Input.style.display = "none";
     }
+  });
 
-    const data = await response.json();
-    console.log("Dados da resposta:", data);
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault(); // Prevenir envio padrão do formulário
 
-    alert(`URL gerada: ${data.redirect_url}`);
-  } catch (error) {
-    console.error("Erro:", error);
-    alert("Erro ao gerar a URL.");
-  }
+    // Mostrar o loader e esconder a resposta anterior
+    responseContainer.style.display = "none";
+    loader.style.display = "block"; // Exibe o loader
+
+    // Obter os dados do formulário
+    const formData = new FormData(form);
+    const data = {
+      url_destino: formData.get('url_destino'),
+      tipo_campanha: formData.get('tipo_campanha'),
+      utm_source: formData.get('source'),
+      utm_medium: formData.get('medium'),
+      utm_campaign: formData.get('campaign'),
+      ga4_id: formData.get('ga4_id') === "Outro" ? formData.get('custom_ga4') : "G-SEC2DGHJ6P"
+    };
+
+    try {
+      // Fazer a requisição para a API FastAPI
+      const response = await fetch('http://localhost:8000/generate_url', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      // Esconder o loader e mostrar a resposta
+      loader.style.display = "none";
+      responseContainer.style.display = "block"; // Exibe o resultado
+
+      if (result.url_da_pagina) {
+        responseContainer.innerHTML = `URL gerada: <a href="${result.url_da_pagina}" target="_blank">${result.url_da_pagina}</a>`;
+      } else {
+        responseContainer.innerHTML = `Erro: ${result.error}`;
+      }
+
+    } catch (error) {
+      loader.style.display = "none";
+      responseContainer.style.display = "block";
+      responseContainer.innerHTML = `Erro: ${error.message}`;
+    }
+  });
 });
