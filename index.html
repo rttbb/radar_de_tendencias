@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerador de URLs de Campanha</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <div class="container">
     <!-- Título Central com logo e palavra-chave -->
     <div class="logo-and-wordmark">
-      <img src="./logo.png" alt="Logo" class="logo">
+      <img src="./assets/logo.png" alt="Logo" class="logo">
       <div class="wordmark">Gerador de Campanhas</div>
     </div>
 
@@ -18,7 +18,7 @@
     <main class="main-content">
       <form id="urlForm" class="form-container">
         
-        <!-- Campo URL de destino em sua própria linha -->
+        <!-- Campo URL de destino -->
         <div class="url-container">
           <input
             type="url"
@@ -29,7 +29,7 @@
           />
         </div>
 
-        <!-- Container para o seletor + campos da campanha alinhados horizontalmente -->
+        <!-- Tipo de Campanha -->
         <div class="input-container">
           <select name="tipo_campanha" class="tipo-campanha">
             <option value="paga">Campanha Paga</option>
@@ -40,7 +40,23 @@
             <input type="text" name="medium" placeholder="Tipo de Campanha" required />
             <input type="text" name="campaign" placeholder="Nome da Campanha" required />
           </div>
-        </div>        
+        </div>
+
+        <!-- Seletor de ID GA4 -->
+        <div class="ga4-container">
+          <select name="ga4_id" id="ga4Select" class="ga4-select">
+            <option value="RTTBB">GA4 do RTTBB</option>
+            <option value="Outro">Outro</option>
+          </select>
+          <input 
+            type="text" 
+            name="custom_ga4" 
+            id="customGa4Input" 
+            class="custom-ga4-input" 
+            placeholder="Digite o ID do GA4..." 
+            style="display: none;" 
+          />
+        </div>
 
         <button type="submit">Gerar URL</button>
       </form>
@@ -48,6 +64,6 @@
     
     <div class="response-container" id="responseContainer" style="display:none;"></div>
   </div>
-  <script src="./js/script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
