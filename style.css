@@ -119,6 +119,32 @@ body {
   border-color: #465EFF;
 }
 
+/* Seleção de GA4 */
+.ga4-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ga4-select {
+  padding: 10px;
+  border: 2px solid #bbbcbc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.custom-ga4-input {
+  padding: 10px;
+  border: 2px solid #bbbcbc;
+  border-radius: 6px;
+  font-size: 14px;
+  display: none; /* Inicialmente escondido */
+}
+
+.custom-ga4-input:focus {
+  border-color: #465EFF;
+}
+
 /* Botão */
 .form-container button {
   background-color: #465EFF;
@@ -133,6 +159,21 @@ body {
 
 .form-container button:hover {
   background-color: #0056b3;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Responsividade */
