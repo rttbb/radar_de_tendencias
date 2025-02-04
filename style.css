@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Configuração de fundo e cores gerais */
+/* Configuração geral */
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #ffffff;
@@ -14,6 +14,30 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+/* Header fixo com logo e título ao lado */
+.header {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Ajuste no tamanho da logo */
+.logo {
+  height: 80px; /* Aumentado */
+  width: auto;
+}
+
+/* Título menor ao lado da logo */
+.wordmark {
+  font-size: 1.2em; /* Reduzido */
+  color: #465EFF;
+  font-weight: normal;
 }
 
 /* Container Principal */
@@ -27,33 +51,12 @@ body {
   padding: 20px;
 }
 
-/* Título com logo */
-.logo-and-wordmark {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 10px;
-}
-
-.logo {
-  height: 50px;
-  width: 50px;
-  object-fit: contain;
-}
-
-.wordmark {
-  font-size: 2em;
-  color: #465EFF;
-  font-weight: bolder;
-}
-
 /* Conteúdo Principal */
 .main-content {
   background: #ffffff;
   border-radius: 8px;
   padding: 20px;
   max-width: 700px;
-  text-align: left;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -65,58 +68,38 @@ body {
   gap: 15px;
 }
 
-/* Campo URL de destino */
-.url-container {
-  width: 100%;
-}
-
-.url-input {
-  width: 100%;
-  padding: 15px;
-  border: 2px solid #bbbcbc;
-  border-radius: 6px;
-  font-size: 18px;
-}
-
-/* Container do campo URL + seletor ajustados responsivamente */
-.input-container {
+/* Estilização dos grupos de inputs (rótulos menores e sem negrito) */
+.input-group {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.input-group label {
+  font-size: 14px; /* Menor tamanho */
+  font-weight: normal; /* Sem negrito */
+  margin-bottom: 5px;
+}
+
+.input-group input, 
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #bbbcbc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Agrupamento dos três campos UTM */
+.utm-container {
+  display: flex;
   gap: 10px;
-  flex-wrap: wrap; /* Responsividade para telas menores */
+  width: 100%;
 }
 
-.url-input {
-  flex: 2 1 60%;
-}
-
-.tipo-campanha {
-  flex: 1 1 35%;
-  padding: 10px;
-  border: 2px solid #bbbcbc;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-/* Outros campos UTM ajustados */
-.campanha-container {
-  display: flex;
-  gap: 8px;
-  flex: 1 1 100%;
-  flex-wrap: wrap;
-}
-
-.campanha-container input {
-  flex: 1 1 calc(33.333% - 10px);
-  padding: 10px;
-  border: 1px solid #bbbcbc;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.2s ease;
-}
-
-.campanha-container input:focus {
-  border-color: #465EFF;
+.utm-container .input-group {
+  flex: 1;
 }
 
 /* Seleção de GA4 */
@@ -128,21 +111,9 @@ body {
 
 .ga4-select {
   padding: 10px;
-  border: 2px solid #bbbcbc;
+  border: 1.5px solid #bbbcbc;
   border-radius: 6px;
   font-size: 14px;
-}
-
-.custom-ga4-input {
-  padding: 10px;
-  border: 2px solid #bbbcbc;
-  border-radius: 6px;
-  font-size: 14px;
-  display: none; /* Inicialmente escondido */
-}
-
-.custom-ga4-input:focus {
-  border-color: #465EFF;
 }
 
 /* Botão */
@@ -158,9 +129,10 @@ body {
 }
 
 .form-container button:hover {
-  background-color: #0056b3;
+  background-color: #0033cc;
 }
 
+/* Loader */
 .loader {
   border: 8px solid #f3f3f3;
   border-top: 8px solid #3498db;
@@ -176,21 +148,35 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+/* Mensagem de carregamento */
+.loading-message {
+  font-size: 16px;
+  color: #465EFF;
+  margin-top: 15px;
+  font-weight: normal;
+  text-align: center;
+  display: none;
+}
+
+/* Resposta */
+.response-container {
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
-  .input-container {
-    flex-direction: column; /* Ajuste para telas menores */
+  .utm-container {
+    flex-direction: column;
   }
 
-  .campanha-container {
-    flex: 1 1 100%;
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .campanha-container input {
-    flex: 1 1 100%;
-  }
-
-  .tipo-campanha {
-    flex: 1 1 100%;
+  .wordmark {
+    font-size: 1em; /* Reduzido ainda mais para telas pequenas */
   }
 }
