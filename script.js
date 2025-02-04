@@ -1,29 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("urlForm");
   const responseContainer = document.getElementById("responseContainer");
-  const loader = document.createElement('div');
-  loader.classList.add('loader'); // Para mostrar a animação de carregamento
-  responseContainer.appendChild(loader);
-  responseContainer.style.display = "none"; // Inicialmente escondido
-
+  const loadingMessage = document.getElementById("loadingMessage");
   const ga4Select = document.getElementById("ga4Select");
+  const customGa4Container = document.getElementById("customGa4Container");
   const customGa4Input = document.getElementById("customGa4Input");
 
-  // Exibe ou esconde o campo de ID customizado dependendo da seleção
+  // Exibe ou esconde o campo GA4 personalizado
   ga4Select.addEventListener("change", function() {
     if (ga4Select.value === "Outro") {
-      customGa4Input.style.display = "block";
+      customGa4Container.style.display = "block";
+      customGa4Input.disabled = false;
     } else {
-      customGa4Input.style.display = "none";
+      customGa4Container.style.display = "none";
+      customGa4Input.disabled = true;
     }
   });
 
   form.addEventListener("submit", async function(event) {
-    event.preventDefault(); // Prevenir envio padrão do formulário
+    event.preventDefault();
 
-    // Mostrar o loader e esconder a resposta anterior
+    // Esconder resposta anterior e mostrar "Carregando..."
+    responseContainer.innerHTML = "";
     responseContainer.style.display = "none";
-    loader.style.display = "block"; // Exibe o loader
+    loadingMessage.style.display = "block";
 
     // Obter os dados do formulário
     const formData = new FormData(form);
@@ -37,29 +37,23 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     try {
-      // Fazer a requisição para a API FastAPI
       const response = await fetch('http://localhost:8000/generate_url', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
 
       const result = await response.json();
+      loadingMessage.style.display = "none"; // Esconde "Carregando..."
+      responseContainer.style.display = "block";
 
-      // Esconder o loader e mostrar a resposta
-      loader.style.display = "none";
-      responseContainer.style.display = "block"; // Exibe o resultado
-
-      if (result.url_da_pagina) {
-        responseContainer.innerHTML = `URL gerada: <a href="${result.url_da_pagina}" target="_blank">${result.url_da_pagina}</a>`;
+      if (result.url) {
+        responseContainer.innerHTML = `URL gerada: <a href="${result.url}" target="_blank">${result.url}</a>`;
       } else {
-        responseContainer.innerHTML = `Erro: ${result.error}`;
+        responseContainer.innerHTML = `Erro: ${result.error || "Erro desconhecido"}`;
       }
-
     } catch (error) {
-      loader.style.display = "none";
+      loadingMessage.style.display = "none";
       responseContainer.style.display = "block";
       responseContainer.innerHTML = `Erro: ${error.message}`;
     }
