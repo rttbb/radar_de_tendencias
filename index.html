@@ -7,63 +7,74 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Título Central com logo e palavra-chave -->
-    <div class="logo-and-wordmark">
-      <img src="./logo.png" alt="Logo" class="logo">
-      <div class="wordmark">Gerador de Campanhas</div>
-    </div>
+  <!-- Header fixo com logo no canto superior esquerdo e título ao lado -->
+  <header class="header">
+    <img src="./logo.png" alt="Logo" class="logo">
+    <h1 class="wordmark">Gerador de Campanhas</h1>
+  </header>
 
-    <!-- Formulário Centralizado -->
+  <div class="container">
+    <!-- Formulário -->
     <main class="main-content">
       <form id="urlForm" class="form-container">
-        
-        <!-- Campo URL de destino -->
-        <div class="url-container">
-          <input
-            type="url"
-            name="url_destino"
-            class="url-input"
-            placeholder="Digite a URL de destino aqui..."
-            required
-          />
+
+        <!-- URL de Destino -->
+        <div class="input-group">
+          <label for="url_destino">URL de Destino</label>
+          <input type="url" id="url_destino" name="url_destino" required />
         </div>
 
         <!-- Tipo de Campanha -->
-        <div class="input-container">
-          <select name="tipo_campanha" class="tipo-campanha">
+        <div class="input-group">
+          <label for="tipo_campanha">Tipo de Campanha</label>
+          <select id="tipo_campanha" name="tipo_campanha">
             <option value="paga">Campanha Paga</option>
             <option value="organica">Campanha Orgânica</option>
           </select>
-          <div class="campanha-container">
-            <input type="text" name="source" placeholder="Origem do Tráfego" required />
-            <input type="text" name="medium" placeholder="Tipo de Campanha" required />
-            <input type="text" name="campaign" placeholder="Nome da Campanha" required />
+        </div>
+
+        <!-- Parâmetros UTM agrupados -->
+        <div class="utm-container">
+          <div class="input-group">
+            <label for="source">Origem do Tráfego</label>
+            <input type="text" id="source" name="source" required />
+          </div>
+
+          <div class="input-group">
+            <label for="medium">Tipo de Campanha</label>
+            <input type="text" id="medium" name="medium" required />
+          </div>
+
+          <div class="input-group">
+            <label for="campaign">Nome da Campanha</label>
+            <input type="text" id="campaign" name="campaign" required />
           </div>
         </div>
 
-        <!-- Seletor de ID GA4 -->
-        <div class="ga4-container">
-          <select name="ga4_id" id="ga4Select" class="ga4-select">
+        <!-- Seleção do ID GA4 -->
+        <div class="input-group">
+          <label for="ga4Select">ID GA4</label>
+          <select id="ga4Select" name="ga4_id">
             <option value="RTTBB">GA4 do RTTBB</option>
             <option value="Outro">Outro</option>
           </select>
-          <input 
-            type="text" 
-            name="custom_ga4" 
-            id="customGa4Input" 
-            class="custom-ga4-input" 
-            placeholder="Digite o ID do GA4..." 
-            style="display: none;" 
-          />
         </div>
 
-        <button type="submit">Gerar URL</button>
+        <div class="input-group" id="customGa4Container" style="display: none;">
+          <label for="customGa4Input">Digite o ID do GA4</label>
+          <input type="text" id="customGa4Input" name="custom_ga4" disabled />
+        </div>
+
+        <!-- Botão de envio -->
+        <button type="submit" id="submitButton">Gerar URL</button>
       </form>
     </main>
-    
-    <div class="response-container" id="responseContainer" style="display:none;"></div>
+
+    <!-- Mensagem de Carregamento e Resposta -->
+    <div id="loadingMessage" class="loading-message" style="display: none;">Carregando...</div>
+    <div id="responseContainer" class="response-container"></div>
   </div>
+
   <script src="./script.js"></script>
 </body>
 </html>
