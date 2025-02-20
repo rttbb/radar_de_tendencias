@@ -117,7 +117,7 @@ body {
 }
 
 /* Botão */
-.form-container button {
+.form-container button, .delete-btn {
   background-color: #465EFF;
   color: white;
   padding: 12px 20px;
@@ -128,7 +128,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.form-container button:hover {
+.form-container button:hover, .delete-btn:hover {
   background-color: #0033cc;
 }
 
@@ -163,6 +163,24 @@ body {
   margin-top: 20px;
   font-size: 16px;
   text-align: center;
+}
+
+/* Estilos para a tabela de campanhas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #465EFF;
+  color: white;
 }
 
 /* Responsividade */
